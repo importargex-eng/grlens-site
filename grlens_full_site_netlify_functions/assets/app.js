@@ -1,5 +1,6 @@
 // ====== Config ======
-const DATA_URL = 'assets/products.json';      // ruta al JSON
+const DATA_URL = '/assets/products.json?v=' + Date.now();
+      // ruta al JSON
 const WHATSAPP = '5491111111111';            // <— tu número con código país, sin +
 
 // ====== Estado ======
