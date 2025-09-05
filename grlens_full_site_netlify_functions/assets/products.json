@@ -1,8 +1,8 @@
 {
   "categories": [
-    { "name": "Unicity", "subcategories": ["Acetato", "Metal", "TR 90", "Clipon"] },
-    { "name": "Vicrola", "subcategories": ["Basic", "Premium"] },
-    { "name": "Steffany", "subcategories": ["Mujer", "Hombre"] },
+    { "name": "Vicrola",   "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
+    { "name": "Steffany",  "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
+    { "name": "Unicity",   "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
 
     { "name": "Metal Dama" },
     { "name": "Metal Dama Premium" },
@@ -14,43 +14,11 @@
     { "name": "Acetato Premium" },
     { "name": "TR Clip On" },
     { "name": "Acetato Clip On" },
-    { "name": "Clip On 360º Premium" },
+    { "name": "Clip On 360° Premium" },
     { "name": "Nylon Dama" }
   ],
 
-  "products": [
-    {
-      "id": 1,
-      "name": "Unicity Acetato 01",
-      "category": "Unicity",
-      "subcategory": "Acetato",
-      "price": 1200,
-      "image": "unicity_acetato_01.png"
-    },
-    {
-      "id": 2,
-      "name": "Unicity Metal 01",
-      "category": "Unicity",
-      "subcategory": "Metal",
-      "price": 1400,
-      "image": "unicity_metal_01.png"
-    },
-    {
-      "id": 3,
-      "name": "Vicrola Basic 01",
-      "category": "Vicrola",
-      "subcategory": "Basic",
-      "price": 900,
-      "image": "vicrola_basic_01.png"
-    },
-    {
-      "id": 4,
-      "name": "Steffany Mujer 01",
-      "category": "Steffany",
-      "subcategory": "Mujer",
-      "price": 1100,
-      "image": "steffany_mujer_01.png"
-    }
-  ]
+  "products": []
 }
+
 
