@@ -1,6 +1,6 @@
 {
   "categories": [
-    { "name": "Unicity", "subcategories": ["Acetato", "Metal", "TR 90 ", "Clipon"] },
+    { "name": "Unicity", "subcategories": ["Acetato", "Metal", "TR 90", "Clipon"] },
     { "name": "Vicrola", "subcategories": ["Basic", "Premium"] },
     { "name": "Steffany", "subcategories": ["Mujer", "Hombre"] },
     { "name": "Metal Dama" },
@@ -15,7 +15,9 @@
     { "name": "Acetato Clip On" },
     { "name": "Clip On 360° Premium" },
     { "name": "Nylon Dama" }
-  ],
+  ]
+}
+
   "products": [
     {
       "id": "U-001",
