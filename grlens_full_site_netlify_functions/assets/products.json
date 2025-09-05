@@ -1,8 +1,8 @@
 {
   "categories": [
-    { "name": "Vicrola",   "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
-    { "name": "Steffany",  "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
-    { "name": "Unicity",   "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
+    { "name": "Vicrola",  "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
+    { "name": "Steffany", "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
+    { "name": "Unicity",  "subcategories": ["Metal", "Acetato", "TR 90", "Clipon"] },
 
     { "name": "Metal Dama" },
     { "name": "Metal Dama Premium" },
@@ -20,5 +20,4 @@
 
   "products": []
 }
-
 
