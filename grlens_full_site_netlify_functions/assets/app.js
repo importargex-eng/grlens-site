@@ -27,14 +27,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ====== Fetch JSON ======
-async function loadData() {
-  const res = await fetch(DATA_URL, { cache: 'no-store' });
-  DB = await res.json();
-  // Insertamos categoría "Todos"
-  if (!DB.categories.find(c => c.name === 'Todos')) {
-    DB.categories.unshift({ name: 'Todos' });
-  }
-}
+console.log('Cargando JSON desde:', DATA_URL);
+fetch(DATA_URL)
+  .then(r => {
+    console.log('Status fetch:', r.status);
+    return r.json();
+  })
+  .then(data => {
+    console.log('Categorias cargadas:', data.categories);
+    console.log('Productos cargados:', data.products);
+    // ... tu código que asigna DB = data ...
+  })
+  .catch(err => console.error('Error cargando JSON', err));
+
 
 // ====== Sidebar con subcategorías ======
 function buildSidebar() {
