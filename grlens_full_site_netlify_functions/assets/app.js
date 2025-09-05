@@ -42,11 +42,58 @@ function buildSidebar() {
   if (!sidebar) return;
 
   sidebar.innerHTML = '';
+// ---- Subcategorías preferidas definidas en products.json -> categories[].subcategories
+const CATS_PREF = new Map(
+  (DB.categories || []).map(c => [c.name, c.subcategories || []])
+);
 
   DB.categories.forEach(cat => {
-    if (cat.subcategories && cat.subcategories.length) {
-      // item desplegable
-      const li = document.createElement('li');
+  // usar la función para obtener subcategorías
+  const subs = CATS_PREF.get(cat.name) || [];
+
+  if (subs.length) {
+    // item desplegable
+    const li = document.createElement('li');
+
+    const btn = document.createElement('button');
+    btn.className = 'dropdown-btn';
+    btn.innerHTML = `${cat.name} <span class="arrow">▾</span>`;
+    btn.addEventListener('click', () => {
+      li.classList.toggle('open');
+    });
+
+    const ul = document.createElement('ul');
+    ul.className = 'dropdown-list';
+
+    subs.forEach(sc => {
+      const it = document.createElement('li');
+      it.innerHTML = `<button class="subcat">${sc}</button>`;
+      it.querySelector('button').addEventListener('click', () => {
+        currentCategory = cat.name;
+        currentSubcategory = sc;
+        renderProducts(); // o tu función de render
+      });
+      ul.appendChild(it);
+    });
+
+    li.appendChild(btn);
+    li.appendChild(ul);
+    sidebar.appendChild(li);
+  } else {
+    // categoría sin subcategorías
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.textContent = cat.name;
+    b.addEventListener('click', () => {
+      currentCategory = cat.name;
+      currentSubcategory = null;
+      renderProducts();
+    });
+    li.appendChild(b);
+    sidebar.appendChild(li);
+  }
+});
+
 
       const btn = document.createElement('button');
       btn.className = 'dropdown-btn';
