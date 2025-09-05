@@ -3,6 +3,7 @@
     { "name": "Unicity", "subcategories": ["Acetato", "Metal", "TR 90", "Clipon"] },
     { "name": "Vicrola", "subcategories": ["Basic", "Premium"] },
     { "name": "Steffany", "subcategories": ["Mujer", "Hombre"] },
+
     { "name": "Metal Dama" },
     { "name": "Metal Dama Premium" },
     { "name": "Metal Caballero" },
@@ -13,111 +14,42 @@
     { "name": "Acetato Premium" },
     { "name": "TR Clip On" },
     { "name": "Acetato Clip On" },
-    { "name": "Clip On 360° Premium" },
+    { "name": "Clip On 360º Premium" },
     { "name": "Nylon Dama" }
-  ]
-}
+  ],
 
   "products": [
     {
-      "id": "U-001",
-      "name": "Unicity A1",
-      "brand": "Unicity",
+      "id": 1,
+      "name": "Unicity Acetato 01",
       "category": "Unicity",
-      "subcategory": "Unisex",
-      "material": "Acetato",
-      "gender": "Unisex",
-      "price": 25000,
-      "stock": 12,
-      "image": "assets/img/unicity-a1.jpg",
-      "tags": ["clip", "livianos"]
+      "subcategory": "Acetato",
+      "price": 1200,
+      "image": "unicity_acetato_01.png"
     },
     {
-      "id": "U-002",
-      "name": "Unicity Premium C3",
-      "brand": "Unicity",
+      "id": 2,
+      "name": "Unicity Metal 01",
       "category": "Unicity",
-      "subcategory": "Premium",
-      "material": "Metal",
-      "gender": "Mujer",
-      "price": 32000,
-      "stock": 8,
-      "image": "assets/img/unicity-premium-c3.jpg",
-      "tags": ["premium"]
+      "subcategory": "Metal",
+      "price": 1400,
+      "image": "unicity_metal_01.png"
     },
     {
-      "id": "V-101",
-      "name": "Vicrola Basic V1",
-      "brand": "Vicrola",
+      "id": 3,
+      "name": "Vicrola Basic 01",
       "category": "Vicrola",
       "subcategory": "Basic",
-      "material": "TR",
-      "gender": "Hombre",
-      "price": 21000,
-      "stock": 10,
-      "image": "assets/img/vicrola-basic-v1.jpg",
-      "tags": ["economico"]
+      "price": 900,
+      "image": "vicrola_basic_01.png"
     },
     {
-      "id": "S-050",
-      "name": "Steffany Mujer S50",
-      "brand": "Steffany",
+      "id": 4,
+      "name": "Steffany Mujer 01",
       "category": "Steffany",
       "subcategory": "Mujer",
-      "material": "Acetato",
-      "gender": "Mujer",
-      "price": 29000,
-      "stock": 6,
-      "image": "assets/img/steffany-s50.jpg",
-      "tags": []
-    },
-    {
-      "id": "MD-010",
-      "name": "Metal Dama MD10",
-      "brand": "GR",
-      "category": "Metal Dama",
-      "material": "Metal",
-      "gender": "Mujer",
-      "price": 27000,
-      "stock": 14,
-      "image": "assets/img/metal-dama-10.jpg",
-      "tags": []
-    },
-    {
-      "id": "MC-025",
-      "name": "Metal Caballero MC25",
-      "brand": "GR",
-      "category": "Metal Caballero",
-      "material": "Metal",
-      "gender": "Hombre",
-      "price": 28000,
-      "stock": 9,
-      "image": "assets/img/metal-caballero-25.jpg",
-      "tags": []
-    },
-    {
-      "id": "AC-200",
-      "name": "Acetato Premium P200",
-      "brand": "GR",
-      "category": "Acetato Premium",
-      "material": "Acetato",
-      "gender": "Unisex",
-      "price": 35000,
-      "stock": 7,
-      "image": "assets/img/acetato-premium-200.jpg",
-      "tags": ["premium"]
-    },
-    {
-      "id": "TR-CLIP-01",
-      "name": "TR Clip On C01",
-      "brand": "GR",
-      "category": "TR Clip On",
-      "material": "TR",
-      "gender": "Unisex",
-      "price": 31000,
-      "stock": 11,
-      "image": "assets/img/tr-clipon-01.jpg",
-      "tags": ["clipon"]
+      "price": 1100,
+      "image": "steffany_mujer_01.png"
     }
   ]
 }
