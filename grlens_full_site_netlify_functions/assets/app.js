@@ -1,5 +1,7 @@
-// =================== Config ===================
-const DATA_URL = 'assets/products.json?v=' + Date.now(); // 
+// ====== Config ======
+const DATA_URL = '/assets/products.json?v=' + Date.now(); // <— así
+const WHATSAPP = '5491128967189'; // tu número
+
 
 let DB = { categories: [], products: [] };
 let currentCategory = 'Todos';
