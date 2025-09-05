@@ -197,6 +197,82 @@
     }
     .toast.show{display:block; animation:fade 2.2s ease forwards}
     @keyframes fade {0%{opacity:0; transform:translate(-50%,8px)} 10%,80%{opacity:1; transform:translate(-50%,0)} 100%{opacity:0; transform:translate(-50%,4px)}}
+.sidebar {
+  padding: 20px;
+  background: #0f172a;
+  color: #fff;
+  width: 250px;
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin-bottom: 8px;
+}
+
+.menu a, .dropdown-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.menu a:hover, .dropdown-btn:hover {
+  background: #334155;
+}
+
+.arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 15px;
+  margin: 5px 0 0;
+  display: none;
+}
+
+.submenu li a {
+  background: #0f172a;
+  padding: 8px;
+  display: block;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.submenu li a:hover {
+  background: #1e293b;
+}
+
+.open .submenu {
+  display: block;
+}
+
+.open .arrow {
+  transform: rotate(180deg);
+}
+
   </style>
 </head>
 <body>
@@ -217,12 +293,48 @@
 
   <main class="layout">
     <!-- Sidebar -->
-    <aside class="sidebar" id="categorias">
-      <p class="side-title">Categorías</p>
-      <div class="side-cat" id="sideCats">
-        <!-- Se llena dinámicamente -->
-      </div>
-    </aside>
+    <aside class="sidebar">
+  <h3>CATEGORÍAS</h3>
+  <ul class="menu">
+    <li>
+      <button class="dropdown-btn">Unicity <span class="arrow">▼</span></button>
+      <ul class="submenu">
+        <li><a href="#">Unicity Modelo 1</a></li>
+        <li><a href="#">Unicity Modelo 2</a></li>
+        <li><a href="#">Unicity Premium</a></li>
+      </ul>
+    </li>
+    <li>
+      <button class="dropdown-btn">Vicrola <span class="arrow">▼</span></button>
+      <ul class="submenu">
+        <li><a href="#">Vicrola Basic</a></li>
+        <li><a href="#">Vicrola Premium</a></li>
+      </ul>
+    </li>
+    <li>
+      <button class="dropdown-btn">Steffany <span class="arrow">▼</span></button>
+      <ul class="submenu">
+        <li><a href="#">Steffany Mujer</a></li>
+        <li><a href="#">Steffany Hombre</a></li>
+      </ul>
+    </li>
+
+    <!-- categorías normales -->
+    <li><a href="#">Metal Dama</a></li>
+    <li><a href="#">Metal Dama Premium</a></li>
+    <li><a href="#">Metal Caballero</a></li>
+    <li><a href="#">Metal Caballero Premium</a></li>
+    <li><a href="#">Acetato Dama</a></li>
+    <li><a href="#">Acetato Caballero</a></li>
+    <li><a href="#">Acetato Económico</a></li>
+    <li><a href="#">Acetato Premium</a></li>
+    <li><a href="#">TR Clip On</a></li>
+    <li><a href="#">Acetato Clip On</a></li>
+    <li><a href="#">Clip On 360° Premium</a></li>
+    <li><a href="#">Nylon Dama</a></li>
+  </ul>
+</aside>
+
 
     <!-- Content -->
     <section class="content">
@@ -438,5 +550,14 @@
   renderCart();
   filterBy('all');
 </script>
+<script>
+document.querySelectorAll('.dropdown-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const parent = btn.parentElement;
+    parent.classList.toggle('open');
+  });
+});
+</script>
+
 </body>
 </html>
