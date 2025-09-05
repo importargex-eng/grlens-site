@@ -2,7 +2,7 @@
 const DATA_URL = 'assets/products.json?v=' + Date.now();
 
       // ruta al JSON
-const WHATSAPP = '5491111111111';            // <— tu número con código país, sin +
+const WHATSAPP = '5491128967189';            // <— tu número con código país, sin +
 
 // ====== Estado ======
 let DB = { categories: [], products: [] };
@@ -40,14 +40,38 @@ fetch(DATA_URL)
   })
   .catch(err => console.error('Error cargando JSON', err));
 
+// ===== Inicio =====
+document.addEventListener('DOMContentLoaded', init);
+
+function init() {
+  fetch(DATA_URL)
+    .then(r => {
+      console.log('Cargando JSON desde:', DATA_URL, 'status:', r.status);
+      return r.json();
+    })
+    .then(data => {
+      DB.categories = data.categories || [];
+      DB.products   = data.products   || [];
+
+      console.log('Categorias cargadas:', DB.categories);
+      console.log('Productos cargados:', DB.products);
+
+      buildSidebar();
+      renderProducts(); // si aún no tenés esta función, dejá un stub
+    })
+    .catch(err => console.error('Error cargando JSON:', err));
+}
 
 // ====== Sidebar con subcategorías ======
 function buildSidebar() {
-  // contenedor: usa el de tu sidebar
   const sidebar = document.querySelector('.sidebar .menu') || document.querySelector('.menu');
   if (!sidebar) return;
 
   sidebar.innerHTML = '';
+
+  DB.categories.forEach(cat => {
+    const li = document.createElement('li');
+        
 // ---- Subcategorías preferidas definidas en products.json -> categories[].subcategories
 const CATS_PREF = new Map(
   (DB.categories || []).map(c => [c.name, c.subcategories || []])
