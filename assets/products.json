@@ -1,1 +1,31 @@
+{
+  "categories": [
+    { "name": "Vicrola",  "subcategories": ["Metal","Acetato","TR 90","Clipon"] },
+    { "name": "Steffany", "subcategories": ["Metal","Acetato","TR 90","Clipon"] },
+    { "name": "Unicity",  "subcategories": ["Metal","Acetato","TR 90","Clipon"] },
+
+    { "name": "Metal Dama" },
+    { "name": "Metal Dama Premium" },
+    { "name": "Metal Caballero" },
+    { "name": "Metal Caballero Premium" },
+    { "name": "Acetato Dama" },
+    { "name": "Acetato Caballero" },
+    { "name": "Acetato Económico" },
+    { "name": "Acetato Premium" },
+    { "name": "TR Clip On" },
+    { "name": "Acetato Clip On" },
+    { "name": "Clip On 360° Premium" },
+    { "name": "Nylon Dama" }
+  ],
+
+  "products": [
+    { "id":"VIC001", "brand":"Vicrola",  "subcategory":"Metal",   "name":"Vicrola M101", "price": 28000 },
+    { "id":"VIC002", "brand":"Vicrola",  "subcategory":"Acetato", "name":"Vicrola A210", "price": 32000 },
+    { "id":"STF010","brand":"Steffany", "subcategory":"TR 90",   "name":"Steffany TR90", "price": 30000 },
+    { "id":"UNI050","brand":"Unicity",  "subcategory":"Clipon",  "name":"Unicity Clip+", "price": 36000 },
+
+    { "id":"MD001", "brand":"Metal Dama", "subcategory":"", "name":"Dama 01", "price": 25000 },
+    { "id":"AC002", "brand":"Acetato Premium", "subcategory":"", "name":"Acet Premium 02", "price": 38000 }
+  ]
+}
 
