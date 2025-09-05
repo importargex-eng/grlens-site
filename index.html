@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GR Lens Distribuidora</title>
+  <meta name="description" content="Distribuidora mayorista de armazones de lentes" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/styles.css?v=1" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <span class="mark">GR</span> Lens Distribuidora
+    </div>
+    <nav class="top-actions">
+      <button id="registerBtn" class="btn ghost">Registrarse</button>
+      <button id="cartBtn" class="btn cart">
+        🛒 <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <img src="assets/banner.jpg" alt="GR Lens Distribuidora" />
+    <div class="banner-label">GR Lens Distribuidora</div>
+  </section>
+
+  <!-- Filtros rápidos -->
+  <section class="chips" id="brandChips">
+    <!-- se completa por JS -->
+  </section>
+
+  <main class="layout">
+    <!-- Contenido principal (grilla) -->
+    <section>
+      <div class="toolbar">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Buscar modelo..." />
+        </div>
+        <div class="order">
+          <select id="orderSelect" aria-label="Ordenar">
+            <option value="newest">Más recientes</option>
+            <option value="price_asc">Precio: menor a mayor</option>
+            <option value="price_desc">Precio: mayor a menor</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="grid" class="grid">
+        <!-- tarjetas de productos (JS) -->
+      </div>
+    </section>
+
+    <!-- Sidebar a la derecha -->
+    <aside class="sidebar">
+      <h3>CATEGORÍAS</h3>
+      <ul id="catsMenu" class="menu"><!-- JS --></ul>
+    </aside>
+  </main>
+
+  <!-- Drawer Carrito -->
+  <aside id="cartDrawer" class="drawer">
+    <div class="drawer-head">
+      <h3>Tu carrito</h3>
+      <button class="icon" id="closeCart">✕</button>
+    </div>
+    <div id="cartItems" class="drawer-body"><!-- JS --></div>
+    <div class="drawer-foot">
+      <div class="line">
+        <span>Subtotal</span><strong id="cartSubtotal">$0</strong>
+      </div>
+      <button id="checkoutBtn" class="btn primary w-100">Finalizar pedido</button>
+      <p class="muted">Al finalizar, verás el número de pedido y total.</p>
+    </div>
+  </aside>
+
+  <!-- Modal Registro -->
+  <dialog id="registerDialog" class="modal">
+    <form id="registerForm" class="modal-card" method="dialog">
+      <header class="modal-head">
+        <h3>Registro de cliente</h3>
+        <button id="closeRegister" class="icon" type="button">✕</button>
+      </header>
+      <div class="modal-body">
+        <label>Nombre y apellido
+          <input name="name" required />
+        </label>
+        <label>Email
+          <input name="email" type="email" required />
+        </label>
+        <label>Zona
+          <input name="zone" required />
+        </label>
+        <label>Nombre de la óptica
+          <input name="optica" required />
+        </label>
+      </div>
+      <footer class="modal-foot">
+        <button type="submit" class="btn primary">Guardar</button>
+        <button type="button" class="btn ghost" id="cancelRegister">Cancelar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* Pegar acá la URL de tu WebApp de Google Apps Script cuando lo crees */
+    window.GS_WEBAPP_URL = "";  // ← reemplazá luego
+  </script>
+  <script src="assets/app.js?v=1" defer></script>
+</body>
+</html>
