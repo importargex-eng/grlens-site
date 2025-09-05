@@ -1,1 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GR Lens Distribuidora</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1720;
+      --panel:#121a24;
+      --panel-2:#0b1118;
+      --text:#e7eef6;
+      --muted:#9fb0c2;
+      --brand:#1ee0a1;    /* acento menta */
+      --brand-2:#00bcd4;  /* acento celeste */
+      --chip:#16222f;
+      --chip-b:#243141;
+      --danger:#ff5f5f;
+      --ok:#28d17c;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --gap:16px;
+      --sidebar:300px;
+      --nav-h:68px;
+      --card-h:380px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+    }
 
+    /* Header */
+    .nav{
+      position:sticky; top:0; z-index:20;
+      height:var(--nav-h); display:flex; align-items:center; gap:18px;
+      padding:0 22px; background:linear-gradient(180deg,rgba(3,10,16,.8),rgba(3,10,16,.35) 70%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid #1b2733;
+    }
+    .brand {display:flex; align-items:center; gap:12px;}
+    .brand img {width:36px;height:36px;object-fit:contain; filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+    .brand h1{margin:0; font-size:18px; font-weight:600; letter-spacing:.2px}
+    .navlinks{margin-left:auto; display:flex; gap:10px}
+    .navlinks a{
+      color:var(--text); text-decoration:none; padding:10px 14px; border-radius:12px;
+      background:transparent; border:1px solid transparent;
+      transition:.2s;
+    }
+    .navlinks a:hover{background:#101a26; border-color:#1f2a36}
+    .whatsapp-pill{
+      background:linear-gradient(135deg,#25D366,#128C7E);
+      color:white; font-weight:600;
+      border:none; box-shadow:var(--shadow);
+    }
+
+    /* Layout */
+    .layout{display:grid; grid-template-columns:var(--sidebar) 1fr; gap:var(--gap); padding:var(--gap)}
+    @media (max-width: 960px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:sticky; top:calc(var(--nav-h) + 10px); z-index:9}
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid #1a2431; border-radius:var(--radius); padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .side-title{font-size:14px; text-transform:uppercase; letter-spacing:1.4px; color:var(--muted); margin:0 0 10px}
+    .side-cat{display:flex; flex-direction:column; gap:8px;}
+    .side-cat button{
+      width:100%; text-align:left; color:var(--text);
+      background:var(--chip); border:1px solid #223042; border-radius:12px;
+      padding:10px 12px; cursor:pointer; transition:.2s;
+    }
+    .side-cat button:hover{transform:translateX(4px); background:var(--chip-b)}
+    .side-cat button.active{outline:2px solid var(--brand); background:#0f1f26}
+
+    /* Content */
+    .content{display:flex; flex-direction:column; gap:18px}
+
+    /* Banner */
+    .banner{
+      position:relative; overflow:hidden; border-radius:var(--radius);
+      border:1px solid #1a2431; height:220px;
+      background:url('banner.png') center/cover no-repeat;
+      box-shadow:var(--shadow)
+    }
+    .banner::after{
+      content:"GR Lens Distribuidora"; position:absolute; left:20px; bottom:20px;
+      padding:10px 14px; border-radius:12px;
+      background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(4px); font-weight:600; letter-spacing:.3px
+    }
+
+    /* Search + chips */
+    .tools{
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+      background:var(--panel); border:1px solid #1a2431; padding:12px; border-radius:var(--radius)
+    }
+    .search{
+      flex:1; display:flex; align-items:center; gap:8px;
+      background:#0f1722; border:1px solid #213042; border-radius:12px; padding:8px 10px
+    }
+    .search input{
+      width:100%; background:transparent; border:none; outline:none; color:var(--text)
+    }
+    .chip{
+      border-radius:999px; padding:8px 12px; background:var(--chip); border:1px solid #223042;
+      font-size:13px; color:var(--text); cursor:pointer; transition:.2s
+    }
+    .chip:hover{background:var(--chip-b)}
+    .chip.active{outline:2px solid var(--brand); background:#0f1f26}
+
+    /* Grid productos */
+    .grid{
+      display:grid; gap:16px; grid-template-columns:repeat(4,1fr)
+    }
+    @media (max-width: 1200px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width: 900px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 600px){ .grid{grid-template-columns:1fr} }
+
+    .card{
+      position:relative; height:var(--card-h);
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid #1a2431; border-radius:16px; overflow:hidden;
+      display:flex; flex-direction:column; transition:.2s; box-shadow: var(--shadow);
+    }
+    .card:hover{transform: translateY(-3px)}
+    .thumb{flex:1; background:#13202e; display:grid; place-items:center}
+    .thumb span{
+      width:86%; height:70%; border-radius:14px; background:linear-gradient(145deg,#243649,#172432);
+      border:1px dashed #2b3b4e;
+    }
+    .info{padding:12px; display:grid; gap:6px}
+    .title{font-size:14px; font-weight:600}
+    .sku{font-size:12px; color:var(--muted)}
+    .price-row{display:flex; align-items:center; justify-content:space-between}
+    .price{font-weight:700}
+    .add{
+      border:none; background:linear-gradient(135deg,var(--brand), var(--brand-2)); color:#07131a;
+      font-weight:700; padding:8px 12px; border-radius:12px; cursor:pointer; box-shadow:var(--shadow)
+    }
+
+    /* Drawer carrito */
+    .drawer{
+      position:fixed; right:-440px; top:0; width:420px; height:100vh; z-index:50;
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border-left:1px solid #1a2431; box-shadow: -12px 0 40px rgba(0,0,0,.35);
+      transition:.3s;
+      display:flex; flex-direction:column;
+    }
+    .drawer.open{right:0}
+    .drawer .head{display:flex; align-items:center; justify-content:space-between; padding:16px; border-bottom:1px solid #1a2431}
+    .drawer h3{margin:0}
+    .cart-list{flex:1; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px}
+    .cart-item{
+      display:grid; grid-template-columns:56px 1fr; gap:10px; align-items:center;
+      background:#0f1722; border:1px solid #1a2431; border-radius:12px; padding:10px
+    }
+    .ph{width:56px; height:56px; background:#172432; border:1px dashed #2b3b4e; border-radius:10px}
+    .ci-title{font-size:13px; font-weight:600}
+    .ci-sku{font-size:12px; color:var(--muted)}
+    .qty{display:flex; align-items:center; gap:8px; margin-top:6px}
+    .qty button{
+      width:28px; height:28px; border-radius:8px; background:#172432; border:1px solid #28394d; color:var(--text); cursor:pointer
+    }
+    .ci-price{margin-left:auto; font-weight:700}
+    .cart-foot{border-top:1px solid #1a2431; padding:12px; display:grid; gap:10px}
+    .row{display:flex; justify-content:space-between; color:var(--muted)}
+    .total{font-size:18px; font-weight:800; color:var(--text)}
+    .checkout{
+      display:flex; gap:8px
+    }
+    .btn{
+      flex:1; padding:12px; border-radius:12px; border:1px solid #243141; background:#0f1722; color:var(--text); cursor:pointer
+    }
+    .btn.primary{background:linear-gradient(135deg,#25D366,#128C7E); color:white; border:none; font-weight:700}
+
+    /* FAB carrito */
+    .fab{
+      position:fixed; right:18px; bottom:18px; z-index:30;
+      width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
+      background:linear-gradient(135deg,var(--brand), var(--brand-2));
+      box-shadow:var(--shadow); color:#06202a; font-weight:800;
+    }
+
+    /* Toast */
+    .toast{
+      position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:60;
+      background:#0e1b26; border:1px solid #203244; color:var(--text); padding:12px 16px;
+      border-radius:12px; box-shadow:var(--shadow); display:none
+    }
+    .toast.show{display:block; animation:fade 2.2s ease forwards}
+    @keyframes fade {0%{opacity:0; transform:translate(-50%,8px)} 10%,80%{opacity:1; transform:translate(-50%,0)} 100%{opacity:0; transform:translate(-50%,4px)}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="nav">
+    <div class="brand">
+      <img src="logotipo.png" alt="GR Lens"/>
+      <h1>Distribuidora de lentes GR</h1>
+    </div>
+    <nav class="navlinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#categorias">Categorías</a>
+      <a class="whatsapp-pill" target="_blank" rel="noopener"
+         href="https://wa.me/TU_NUMERO_CON_CODIGO?text=Hola!%20Quiero%20hacer%20un%20pedido.">WhatsApp</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="categorias">
+      <p class="side-title">Categorías</p>
+      <div class="side-cat" id="sideCats">
+        <!-- Se llena dinámicamente -->
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <section class="content">
+      <div class="banner" id="inicio"></div>
+
+      <!-- Herramientas -->
+      <div class="tools">
+        <div class="search">
+          🔎 <input id="q" placeholder="Buscar modelo, material o marca...">
+        </div>
+        <button class="chip active" data-filter="all">Todos</button>
+        <button class="chip" data-filter="Unicity">Unicity</button>
+        <button class="chip" data-filter="Vicrola">Vicrola</button>
+        <button class="chip" data-filter="Steffany">Steffany</button>
+        <button class="chip" data-filter="Metal Dama">Metal Dama</button>
+        <button class="chip" data-filter="Metal Dama Premium">Metal Dama Premium</button>
+        <button class="chip" data-filter="Metal Caballero">Metal Caballero</button>
+        <button class="chip" data-filter="Metal Caballero Premium">Metal Caballero Premium</button>
+        <button class="chip" data-filter="Acetato Dama">Acetato Dama</button>
+        <button class="chip" data-filter="Acetato Caballero">Acetato Caballero</button>
+        <button class="chip" data-filter="Acetato Económico">Acetato Económico</button>
+        <button class="chip" data-filter="Acetato Premium">Acetato Premium</button>
+        <button class="chip" data-filter="TR Clip On">TR Clip On</button>
+        <button class="chip" data-filter="Acetato Clip On">Acetato Clip On</button>
+        <button class="chip" data-filter="Clip On 360° Premium">Clip On 360° Premium</button>
+        <button class="chip" data-filter="Nylon Dama">Nylon Dama</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <!-- Drawer Carrito -->
+  <aside class="drawer" id="drawer">
+    <div class="head">
+      <h3>🛒 Tu pedido</h3>
+      <button class="btn" id="closeCart">Cerrar</button>
+    </div>
+    <div class="cart-list" id="cartList"></div>
+    <div class="cart-foot">
+      <div class="row"><span>Subtotal</span><strong id="subt">$ 0,00</strong></div>
+      <div class="row"><span>Envío</span><span>Coordinar</span></div>
+      <div class="row total"><span>Total</span><span id="total">$ 0,00</span></div>
+      <div class="checkout">
+        <button class="btn" id="clearCart">Vaciar</button>
+        <button class="btn primary" id="checkout">Finalizar por WhatsApp</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- FAB -->
+  <button class="fab" id="openCart">🛍️</button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Producto agregado al carrito</div>
+
+<script>
+  /* *************** DATA (mock) ****************** */
+  const CATS = [
+    "Unicity","Vicrola","Steffany","Metal Dama","Metal Dama Premium",
+    "Metal Caballero","Metal Caballero Premium","Acetato Dama","Acetato Caballero",
+    "Acetato Económico","Acetato Premium","TR Clip On","Acetato Clip On",
+    "Clip On 360° Premium","Nylon Dama"
+  ];
+
+  // Productos demo. Cuando tengas catálogo real, reemplazá este arreglo.
+  const PRODUCTS = [
+    {id:'A1-AC', name:'Amazón Clásico A1', cat:'Acetato Caballero', brand:'Unicity', price:25000},
+    {id:'U2-TR', name:'Ultraliviano U2 TR90', cat:'TR Clip On', brand:'Vicrola', price:31000},
+    {id:'M5-ME', name:'Metálico M5', cat:'Metal Caballero', brand:'Steffany', price:29000},
+    {id:'MD-P1', name:'Metal Dama P1', cat:'Metal Dama Premium', brand:'Unicity', price:34000},
+    {id:'AC-EC', name:'Acetato Económico AE', cat:'Acetato Económico', brand:'Vicrola', price:21000},
+    {id:'AC-PR', name:'Acetato Premium AP', cat:'Acetato Premium', brand:'Steffany', price:36000},
+    {id:'CL-360', name:'Clip On 360°', cat:'Clip On 360° Premium', brand:'Unicity', price:39000},
+    {id:'NY-D1', name:'Nylon Dama ND1', cat:'Nylon Dama', brand:'Vicrola', price:33000},
+    {id:'AC-DO', name:'Acetato Dama OD', cat:'Acetato Dama', brand:'Steffany', price:27000},
+    {id:'AC-CO', name:'Acetato Clip On AC', cat:'Acetato Clip On', brand:'Unicity', price:32000},
+    {id:'MC-P', name:'Metal Caballero Premium', cat:'Metal Caballero Premium', brand:'Vicrola', price:42000},
+  ];
+
+  /* *************** HELPERS ****************** */
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  const money = n => n.toLocaleString('es-AR',{style:'currency',currency:'ARS'});
+
+  function toast(msg){
+    const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+    setTimeout(()=> t.classList.remove('show'), 2100);
+  }
+
+  /* *************** RENDER CATEGORÍAS ****************** */
+  function renderSideCats(){
+    const box = $('#sideCats');
+    box.innerHTML = '';
+    const all = document.createElement('button');
+    all.textContent = 'Todos'; all.className='active';
+    all.onclick = ()=> filterBy('all');
+    box.appendChild(all);
+    CATS.forEach(c=>{
+      const b = document.createElement('button');
+      b.textContent = c; b.onclick = ()=> filterBy(c);
+      box.appendChild(b);
+    });
+  }
+
+  /* *************** RENDER GRID ****************** */
+  function renderGrid(items){
+    const g = $('#grid'); g.innerHTML = '';
+    if(!items.length){
+      g.innerHTML = `<div style="opacity:.7">No hay resultados.</div>`;
+      return;
+    }
+    items.forEach(p=>{
+      const el = document.createElement('article');
+      el.className='card'; el.setAttribute('data-cat',p.cat);
+      el.innerHTML = `
+        <div class="thumb"><span></span></div>
+        <div class="info">
+          <div class="title">${p.name}</div>
+          <div class="sku">${p.brand} · ${p.cat} · <b>${p.id}</b></div>
+          <div class="price-row">
+            <div class="price">${money(p.price)}</div>
+            <button class="add">Agregar</button>
+          </div>
+        </div>`;
+      el.querySelector('.add').onclick = ()=> addToCart(p);
+      g.appendChild(el);
+    });
+  }
+
+  /* *************** FILTRO ****************** */
+  let current = [...PRODUCTS];
+
+  function filterBy(cat){
+    // actualizar chips y sidebar
+    $$('.chip').forEach(c=>c.classList.toggle('active', (cat==='all'? c.dataset.filter==='all' : c.dataset.filter===cat)));
+    $$('#sideCats button').forEach(b=> b.classList.toggle('active', b.textContent===cat || (cat==='all' && b.textContent==='Todos')));
+
+    const q = $('#q').value.trim().toLowerCase();
+    current = PRODUCTS.filter(p=>{
+      const byCat = cat==='all' ? true : p.cat===cat;
+      const byQ = !q || (p.name.toLowerCase().includes(q) || p.id.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
+      return byCat && byQ;
+    });
+    renderGrid(current);
+  }
+  $('#q').addEventListener('input', ()=> filterBy($('.chip.active')?.dataset.filter || 'all'));
+  $$('.chip').forEach(c=> c.addEventListener('click', ()=> filterBy(c.dataset.filter)));
+
+  /* *************** CARRITO ****************** */
+  const CART_KEY = 'grlens_cart';
+  let cart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+  function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+  function cartTotals(){
+    const subtotal = cart.reduce((a,i)=> a + i.price*i.qty, 0);
+    $('#subt').textContent = money(subtotal);
+    $('#total').textContent = money(subtotal);
+  }
+  function renderCart(){
+    const list = $('#cartList'); list.innerHTML = '';
+    if(!cart.length){ list.innerHTML = `<div style="opacity:.7">Tu carrito está vacío.</div>`; cartTotals(); return; }
+    cart.forEach((it,idx)=>{
+      const li = document.createElement('div');
+      li.className='cart-item';
+      li.innerHTML = `
+        <div class="ph"></div>
+        <div>
+          <div class="ci-title">${it.name}</div>
+          <div class="ci-sku">${it.brand} · ${it.cat} · ${it.id}</div>
+          <div class="qty">
+            <button data-act="dec">-</button>
+            <span>${it.qty}</span>
+            <button data-act="inc">+</button>
+            <button data-act="del" style="margin-left:8px;border-color:#3b2b2b;background:#261616">🗑️</button>
+            <span class="ci-price">${money(it.price*it.qty)}</span>
+          </div>
+        </div>`;
+      li.querySelector('[data-act="inc"]').onclick = ()=>{ it.qty++; saveCart(); renderCart(); }
+      li.querySelector('[data-act="dec"]').onclick = ()=>{ it.qty = Math.max(1, it.qty-1); saveCart(); renderCart(); }
+      li.querySelector('[data-act="del"]').onclick = ()=>{ cart.splice(idx,1); saveCart(); renderCart(); }
+      list.appendChild(li);
+    });
+    cartTotals();
+  }
+  function addToCart(p){
+    const f = cart.find(x=>x.id===p.id);
+    if(f) f.qty++; else cart.push({...p, qty:1});
+    saveCart(); renderCart(); toast('Producto agregado al carrito');
+  }
+
+  /* *************** DRAWER ****************** */
+  const drawer = $('#drawer');
+  $('#openCart').onclick = ()=> drawer.classList.add('open');
+  $('#closeCart').onclick = ()=> drawer.classList.remove('open');
+  $('#clearCart').onclick = ()=>{ cart = []; saveCart(); renderCart(); };
+
+  /* *************** CHECKOUT ****************** */
+  $('#checkout').onclick = ()=>{
+    if(!cart.length){ toast('El carrito está vacío'); return; }
+    const orderNo = 'PED-' + new Date().toISOString().slice(0,10).replaceAll('-','') + '-' + Math.floor(Math.random()*9999).toString().padStart(4,'0');
+    const lines = cart.map(i=> `• ${i.name} (${i.id}) x${i.qty} — ${money(i.price*i.qty)}`).join('%0A');
+    const total = cart.reduce((a,i)=> a + i.price*i.qty, 0);
+    const text = `Hola!%20Quiero%20finalizar%20mi%20pedido.%0A%0A*${orderNo}*%0A${lines}%0A%0ATotal:%20${money(total)}%0A%0AEnvío:%20a%20coordinar`;
+    const url = `https://wa.me/TU_NUMERO_CON_CODIGO?text=${text}`;
+    window.open(url,'_blank','noopener');
+  };
+
+  /* *************** INIT ****************** */
+  renderSideCats();
+  renderGrid(PRODUCTS);
+  renderCart();
+  filterBy('all');
+</script>
+</body>
+</html>
